@@ -1,5 +1,5 @@
-const contactList = require("./contactList")
-const storageFunctions = require("./storage")
+// const contactList = require("./contactList")
+// const storageFunctions = require("./storage")
 
 // function newContact(name, phoneNumber, address) {
 //     contact = {

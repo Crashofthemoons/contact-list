@@ -1,55 +1,58 @@
 // const contact = require("./contact")
 // const addContact = require("./contactList")
-contactList = []
 
-/////////
+///// contact list
+let contactList = []
+
+///////// contact & add id
 const addContact = (name, phoneNumber, address) => {
 
     contactList.push({
         "name": name,
         "phone": phoneNumber,
-        "address": address
-        })
+        "address": address,
+        "id": () => {
+            let randNum = Math.floor(100000000 + Math.random() * 900000000);
+            contact.id = randNum
+        }
+    })
 
     }
-//////////
-const contactForm = document.querySelector("#form")
-const fragment = document.createDocumentFragment()
-const form = document.createElement("form");
+////////// form and save to local storage
+
 const contactFormArticle = document.querySelector("#list")
 const fragment2 = document.createDocumentFragment()
-const name = document.createElement("input");
-name.setAttribute("type", "text")
-name.setAttribute("value", "Name")
-form.appendChild(name)
 
-const phoneNumber = document.createElement("input");
-phoneNumber.setAttribute("type", "text")
-phoneNumber.setAttribute("value", "PhoneNumber")
-form.appendChild(phoneNumber)
+const name = document.querySelector("#name");
 
-const address = document.createElement("input");
-address.setAttribute("type", "text")
-address.setAttribute("value", "Address")
-form.appendChild(address)
+const phoneNumber = document.querySelector("#phoneNumber");
 
-const button = document.createElement("input");
-button.setAttribute("type", "button")
-button.setAttribute("value", "Submit")
+const address = document.querySelector("#address");
+
+const button = document.querySelector("#submit");
 button.addEventListener("click", function () {
     addContact(name.value, phoneNumber.value, address.value)
     console.log(name.value, phoneNumber.value, address.value)
-    saveDatabase(contactList, "All Contacts")
     createDom()
+    saveDatabase(contactList, "All Contacts")
 })
-form.appendChild(button)
-fragment.appendChild(form)
-contactForm.appendChild(fragment)
-//////////////
+
+////////////// clear dom
+
+const nukeDOM = () => {
+    const nuke = document.getElementById("list")
+    while (nuke.firstChild) {
+        nuke.removeChild(nuke.firstChild)
+    }
+ }
+//////// load from local storage
+const loadDatabase = JSON.parse(localStorage.getItem("All Contacts"))
+console.log(loadDatabase)
 
 const createDom = () => {
+    nukeDOM()
+    loadDatabase.concat(contactList)
     contactList.forEach(object =>{
-
         const listElement = document.createElement("p")
         listElement.textContent =`${object.name} ${object.phone} ${object.address}`
         fragment2.appendChild(listElement)
@@ -57,27 +60,34 @@ const createDom = () => {
     })
 
 }
+loadDatabase.forEach(object =>{
+    const listElement2 = document.createElement("p")
+    listElement2.textContent =`${object.name} ${object.phone} ${object.address}`
+    fragment2.appendChild(listElement2)
+    contactFormArticle.appendChild(fragment2)
+})
 
 
 
-////////
+//////// storage functions
 
 const saveDatabase = function (databaseObject, localStorageKey) {
     const stringifiedDatabase = JSON.stringify(databaseObject)
     localStorage.setItem(localStorageKey, stringifiedDatabase)
 }
 
-const loadDatabase = function (localStorageKey) {
-    const databaseString = localStorage.getItem(localStorageKey)
-    return JSON.parse(databaseString)
-}
+
+console.log(loadDatabase)
 
 
 
 
 
-loadDatabase(contactList, "All Contacts")
+
+
+
 
 
 // module.exports = contactForm
+// export as an object with methods
 
