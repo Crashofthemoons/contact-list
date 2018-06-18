@@ -19,6 +19,7 @@ const addContact = (name, phoneNumber, address) => {
 
     }
 ////////// form and save to local storage
+createDom()
 
 const contactFormArticle = document.querySelector("#list")
 const fragment2 = document.createDocumentFragment()
@@ -33,7 +34,7 @@ const button = document.querySelector("#submit");
 button.addEventListener("click", function () {
     addContact(name.value, phoneNumber.value, address.value)
     console.log(name.value, phoneNumber.value, address.value)
-    createDom()
+    addToDom()
     saveDatabase(contactList, "All Contacts")
 })
 
@@ -49,7 +50,7 @@ const nukeDOM = () => {
 const loadDatabase = JSON.parse(localStorage.getItem("All Contacts"))
 console.log(loadDatabase)
 
-const createDom = () => {
+const addToDom = () => {
     nukeDOM()
     loadDatabase.concat(contactList)
     contactList.forEach(object =>{
@@ -60,13 +61,14 @@ const createDom = () => {
     })
 
 }
-loadDatabase.forEach(object =>{
-    const listElement2 = document.createElement("p")
-    listElement2.textContent =`${object.name} ${object.phone} ${object.address}`
-    fragment2.appendChild(listElement2)
-    contactFormArticle.appendChild(fragment2)
-})
-
+const createDom = () => {
+    loadDatabase.forEach(object =>{
+        const listElement2 = document.createElement("p")
+        listElement2.textContent =`${object.name} ${object.phone} ${object.address}`
+        fragment2.appendChild(listElement2)
+        contactFormArticle.appendChild(fragment2)
+    })
+}
 
 
 //////// storage functions
