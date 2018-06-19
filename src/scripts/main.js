@@ -14,10 +14,15 @@
 
 // Bonus: Are there any other modules that could be made? Do any modules have more than one possible responsibility? Perhaps something that is a general utility function.
 
-const contactDatabase = require("./storage")
-const contactCollection = require("./contactCollection")
-const contactForm = require("./contactForm")
+const loadDatabase = require("./loadStorage")
+const createDom = require("./contactCollection")
+const addContact = require("./contactForm")
 const contactList = require("./contactList")
-const contact = require("./contact")
+const saveDatabase = require("./saveStorage")
+
+
+saveDatabase(contactList, "All Contacts")
+loadDatabase("All Contacts")
+createDom()
 
 

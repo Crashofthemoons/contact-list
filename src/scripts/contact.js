@@ -1,14 +1,25 @@
-// const contactList = require("./contactList")
-// const storageFunctions = require("./storage")
+////////////// clear dom
+const contactList = require("./contactList")
 
-// function newContact(name, phoneNumber, address) {
-//     contact = {
-//     name = name,
-//     phone = phoneNumber,
-//     address = address
-//     }
+const nukeDOM = () => {
+    const nuke = document.getElementById("list")
+    while (nuke.firstChild) {
+        nuke.removeChild(nuke.firstChild)
+    }
+ }
+//////// load from local storage
 
-// }
+const addToDom = () => {
+    nukeDOM()
+    // database.concat(contactList)
+    contactList.forEach(object =>{
+        const listElement = document.createElement("p")
+        listElement.textContent =`${object.name} ${object.phone} ${object.address}`
+        fragment2.appendChild(listElement)
+        contactFormArticle.appendChild(fragment2)
+    })
 
-// console.log(newContact("jenn", "43857", "943"))
+}
+
+module.exports = addToDom
 

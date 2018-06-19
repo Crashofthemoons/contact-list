@@ -1,10 +1,7 @@
-// const contactCollection = require("./contactCollection")
-// const newContact = require("./contact")
-// const contactDatabase = require("./storage")
 
 
+///// contact list
+let contactList = []
 
 
-
-
-// module.exports = addContact
+module.exports = contactList
