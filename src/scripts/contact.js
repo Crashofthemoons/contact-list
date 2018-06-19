@@ -11,7 +11,6 @@ const nukeDOM = () => {
 
 const addToDom = () => {
     nukeDOM()
-    // database.concat(contactList)
     contactList.forEach(object =>{
         const listElement = document.createElement("p")
         listElement.textContent =`${object.name} ${object.phone} ${object.address}`
