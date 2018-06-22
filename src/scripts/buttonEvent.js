@@ -1,18 +1,23 @@
 const addContact = require("./addContact")
-const saveDatabase = require("./saveStorage")
+const createDom = require("./createDom")
 
-const contactFormArticle = document.querySelector("#list")
-const fragment2 = document.createDocumentFragment()
+const nukeDOM = () => {
+    const nuke = document.getElementById("list")
+    while (nuke.firstChild) {
+        nuke.removeChild(nuke.firstChild)
+    }
+ }
+
 const name = document.querySelector("#name");
 const phoneNumber = document.querySelector("#phoneNumber");
 const address = document.querySelector("#address");
 const button = document.querySelector("#submit");
 
 button.addEventListener("click", function () {
+    console.log(addContact)
     addContact(name.value, phoneNumber.value, address.value)
     console.log(name.value, phoneNumber.value, address.value)
-    addToDom()
-    saveDatabase(contactList, "All Contacts")
+    nukeDOM()
+    createDom()
 })
 
-module.exports = {fragment2, contactFormArticle}

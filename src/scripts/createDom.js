@@ -1,20 +1,17 @@
 
 const loadDatabase = require("./loadStorage")
-const dom = require("./buttonEvent")
-
 
 const createDom = () => {
-    if(localStorage.getItem("All Contacts") !== null){
+    const contactFormArticle = document.querySelector("#list")
+    const fragment2 = document.createDocumentFragment()
 
-        console.log("database loads")
-        database = loadDatabase()
+    let contactList = loadDatabase("All Contacts")
 
-    }
-    database.forEach(object =>{
+    contactList.forEach(object =>{
         const listElement2 = document.createElement("p")
         listElement2.textContent =`${object.name} ${object.phone} ${object.address}`
-        dom.fragment2.appendChild(listElement2)
-        dom.contactFormArticle.appendChild(fragment2)
+        fragment2.appendChild(listElement2)
+        contactFormArticle.appendChild(fragment2)
     })
 }
 

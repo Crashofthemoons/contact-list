@@ -14,18 +14,9 @@
 
 // Bonus: Are there any other modules that could be made? Do any modules have more than one possible responsibility? Perhaps something that is a general utility function.
 
-const loadDatabase = require("./loadStorage")
+
 const createDom = require("./createDom")
-const addContact = require("./addContact")
-let contactList = require("./contactList")
-const saveDatabase = require("./saveStorage")
 
-if(localStorage.getItem("All Contacts") !== null){
-
-    console.log("database loads")
-    database = loadDatabase()
-
-}
 
 createDom()
 

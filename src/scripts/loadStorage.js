@@ -1,9 +1,13 @@
 ////////// form and save to local storage
-
+let contactList = []
 
 const loadDatabase = function (localStorageKey) {
     const databaseString = localStorage.getItem(localStorageKey)
-    return JSON.parse(databaseString)
+    if(databaseString){
+        return JSON.parse(databaseString)
+    } else {
+        return contactList
+    }
 }
 
 

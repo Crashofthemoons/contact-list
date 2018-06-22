@@ -1,26 +1,22 @@
-let contactList = require("./contactList")
+const loadDatabase = require("./loadStorage")
 const saveDatabase = require("./saveStorage")
-const addToDom = require("./addToCom")
+
+let contactList = loadDatabase("All Contacts")
+const randomNum = () => {
+    let randNum = Math.floor(100000000 + Math.random() * 900000000);
+    return randNum
+}
 ///////// contact & add id
 const addContact = (name, phoneNumber, address) => {
 
-    if(localStorage.getItem("All Contacts") !== null){
-
-        console.log("database loads")
-        database = loadDatabase()
-
-    }
-
+    console.log(contactList)
     contactList.push({
         "name": name,
         "phone": phoneNumber,
         "address": address,
-        "id": () => {
-            let randNum = Math.floor(100000000 + Math.random() * 900000000);
-            contact.id = randNum
-        }
+        "id": randomNum()
     })
-
-    }
+    saveDatabase(contactList, "All Contacts")
+}
 
 module.exports = addContact
