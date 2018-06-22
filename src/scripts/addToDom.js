@@ -1,5 +1,6 @@
 ////////////// clear dom
-const contactList = require("./contactList")
+let contactList = require("./contactList")
+const dom = require("./buttonEvent")
 
 const nukeDOM = () => {
     const nuke = document.getElementById("list")
@@ -14,8 +15,8 @@ const addToDom = () => {
     contactList.forEach(object =>{
         const listElement = document.createElement("p")
         listElement.textContent =`${object.name} ${object.phone} ${object.address}`
-        fragment2.appendChild(listElement)
-        contactFormArticle.appendChild(fragment2)
+        dom.fragment2.appendChild(listElement)
+        dom.contactFormArticle.appendChild(fragment2)
     })
 
 }
